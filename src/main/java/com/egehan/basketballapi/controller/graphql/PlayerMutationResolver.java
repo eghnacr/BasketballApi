@@ -4,8 +4,6 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.egehan.basketballapi.dto.PlayerCreateDto;
 import com.egehan.basketballapi.dto.PlayerViewDto;
 import com.egehan.basketballapi.service.PlayerService;
-import com.egehan.basketballapi.service.PlayerServiceImpl;
-import graphql.execution.DataFetcherResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;

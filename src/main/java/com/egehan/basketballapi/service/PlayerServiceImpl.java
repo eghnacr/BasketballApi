@@ -6,7 +6,6 @@ import com.egehan.basketballapi.entity.Player;
 import com.egehan.basketballapi.repository.PlayerRepository;
 import com.egehan.basketballapi.service.exception.TeamIsFullException;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
