@@ -6,8 +6,6 @@ import com.egehan.basketballapi.entity.Player;
 import com.egehan.basketballapi.entity.Position;
 import com.egehan.basketballapi.repository.PlayerRepository;
 import com.egehan.basketballapi.service.exception.TeamIsFullException;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -67,15 +64,15 @@ class PlayerServiceImplTest {
 
         when(playerRepository.count()).thenReturn(5L);
 
-        assertThrows(TeamIsFullException.class, () -> {
-                playerService.save(playerCreateDto);
-        });
+        assertThrows(TeamIsFullException.class, () ->
+                playerService.save(playerCreateDto)
+        );
     }
 
     @Test
     void delete() {
         Long id = 1L;
         playerService.delete(id);
-        verify(playerRepository,times(1)).deleteById(id);
+        verify(playerRepository, times(1)).deleteById(id);
     }
 }
