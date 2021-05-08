@@ -6,8 +6,6 @@ enum Position{
     CENTER
 }
 
-directive @Size(min: Int = 0, max: Int = 100 message : String = "en az 3") on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
-
 type PlayerViewDto {
     id: ID!,
     name: String!,
@@ -18,8 +16,8 @@ type PlayerViewDto {
 
 
 input PlayerCreateDto {
-    name: String! @Size(min : 3, max : 100),
-    surname: String! @Size(min : 2, max : 3),
+    name: String!,
+    surname: String!,
     position: Position!
 }
 

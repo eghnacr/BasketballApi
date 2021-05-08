@@ -78,6 +78,14 @@
             <artifactId>graphiql-spring-boot-starter</artifactId>
             <version>5.0.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-spring-boot-test -->
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-spring-boot-test</artifactId>
+            <version>5.0.2</version>
+            <scope>test</scope>
+        </dependency>
+
 
 
     </dependencies>

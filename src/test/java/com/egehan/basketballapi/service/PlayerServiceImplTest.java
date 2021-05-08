@@ -14,6 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -28,6 +31,19 @@ class PlayerServiceImplTest {
 
     @Test
     void testFindAll() {
+        Player player = Player.builder()
+                .id(1L)
+                .name("Test-Name")
+                .surname("Test-Surname")
+                .position(Position.CENTER).build();
+        when(playerRepository.findAll()).thenReturn(List.of(player));
+
+        List<PlayerViewDto> playerViewDtos = playerService.findAll();
+
+        assertEquals(playerViewDtos.size(), 1);
+        assertEquals(playerViewDtos.get(0).getId(), player.getId());
+        assertEquals(playerViewDtos.get(0).getName(), player.getName());
+
 
     }
 
@@ -37,41 +53,29 @@ class PlayerServiceImplTest {
                 .name("Test-Name")
                 .surname("Test-Surname")
                 .position(Position.SHOOTING_GUARD).build();
-
-        Player mockPlayer = mock(Player.class);
-        when(mockPlayer.getId())
-                .thenReturn(1L);
         when(playerRepository.save(any(Player.class)))
-                .thenReturn(mockPlayer);
-
-        /*when(mockPlayer.getName())
-                .thenReturn("Test-Name");*/
+                .thenAnswer(i -> i.getArguments()[0]);
 
         PlayerViewDto playerViewDto = playerService.save(playerCreateDto);
 
         assertEquals(playerCreateDto.getName(), playerViewDto.getName());
-        assertEquals(playerViewDto.getId(), 1L);
     }
 
     @Test
     void testSaveWhenTeamIsFull() {
-        PlayerCreateDto playerCreateDto = PlayerCreateDto.builder()
-                .name("Test-Name")
-                .surname("Test-Surname")
-                .position(Position.SHOOTING_GUARD).build();
+        PlayerCreateDto playerCreateDto = PlayerCreateDto.builder().build();
 
-        Player mockPlayer = mock(Player.class);
-        when(playerRepository.save(any(Player.class)))
-                .thenReturn(mockPlayer);
+        when(playerRepository.count()).thenReturn(5L);
 
         assertThrows(TeamIsFullException.class, () -> {
-            for (int i = 0; i < 6; i++)
                 playerService.save(playerCreateDto);
         });
     }
 
     @Test
     void delete() {
-
+        Long id = 1L;
+        playerService.delete(id);
+        verify(playerRepository,times(1)).deleteById(id);
     }
 }
