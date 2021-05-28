@@ -4,13 +4,14 @@ import graphql.ExceptionWhileDataFetching;
 import graphql.GraphQLError;
 import graphql.servlet.GraphQLErrorHandler;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@org.springframework.context.annotation.Configuration
-public class Configuration {
+@Configuration
+public class GraphQLConfiguration {
 
     @Bean
     public GraphQLErrorHandler errorHandler() {

@@ -16,6 +16,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class PlayerCreateDto {
 
+
     @NotBlank
     private String name;
     @NotBlank

@@ -13,7 +13,7 @@ public class PlayerViewDto {
     private String surname;
     private Position position;
 
-    public static PlayerViewDto of(Player player){
+    public static PlayerViewDto of(Player player) {
         return PlayerViewDto.builder()
                 .id(player.getId())
                 .name(player.getName())

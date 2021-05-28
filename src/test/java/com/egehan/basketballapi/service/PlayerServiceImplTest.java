@@ -40,8 +40,6 @@ class PlayerServiceImplTest {
         assertEquals(playerViewDtos.size(), 1);
         assertEquals(playerViewDtos.get(0).getId(), player.getId());
         assertEquals(playerViewDtos.get(0).getName(), player.getName());
-
-
     }
 
     @Test
